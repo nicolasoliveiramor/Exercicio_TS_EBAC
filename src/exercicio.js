@@ -1,30 +1,18 @@
 "use strict";
-const funcaoDizOi = (nome) => {
-    return new Promise((resolve, reject) => {
-        try {
-            resolve(`Olá ${nome}, como vai?`);
-        }
-        catch (error) {
-            reject(error);
-        }
-    });
-};
-const funcaoCalculaArea = (largura, comprimento) => {
-    return new Promise((resolve, reject) => {
+var exercicio;
+(function (exercicio) {
+    // Função para retornar uma saudação personalizada com o nome
+    const dizOi = (nome) => `Olá ${nome}, como vai?`;
+    console.log(dizOi('Nicolas'));
+    // Função para calcular a área, com validação para evitar valores negativos
+    const calculaArea = (largura, comprimento) => {
+        // Verificação para garantir que os valores não sejam negativos
         if (largura < 0 || comprimento < 0) {
-            reject(new Error(`Os valores não podem ser menores do que zero!`));
+            throw new Error(`Os valores não podem ser menores que zero!`); // Corrigido o português aqui
         }
-        else if (typeof largura !== "number" || typeof comprimento !== "number") {
-            reject(new Error(`Os valores devem ser números.`));
-        }
-        else {
-            resolve(largura * comprimento);
-        }
-    });
-};
-funcaoDizOi('Nicolas')
-    .then(result => console.log(result))
-    .catch(error => console.error(error));
-funcaoCalculaArea('25', '25')
-    .then(result => console.log(`A área é de: ${result}m².`))
-    .catch(error => console.error(error));
+        // Retorna o cálculo da área (largura * comprimento)
+        return largura * comprimento;
+    };
+    // Exibindo o resultado da função calculaArea no console
+    console.log(`A área é de: ${calculaArea(25, 25)}m²`);
+})(exercicio || (exercicio = {}));
